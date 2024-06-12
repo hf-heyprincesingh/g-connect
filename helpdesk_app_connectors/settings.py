@@ -45,8 +45,9 @@ SOCIALACCOUNT_PROVIDERS = {
             "https://www.googleapis.com/auth/admin.directory.device.mobile.readonly",
         ],
         "AUTH_PARAMS": {
-            "access_type": "online",
+            "access_type": "offline",
         },
+        "OAUTH_PKCE_ENABLED": True,
     }
 }
 
