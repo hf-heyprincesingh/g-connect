@@ -62,6 +62,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
+
 ROOT_URLCONF = "helpdesk_app_connectors.urls"
 
 TEMPLATES = [
@@ -140,5 +141,5 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/post_login"
 LOGOUT_REDIRECT_URL = "/"

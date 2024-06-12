@@ -4,32 +4,15 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Google Sign-In</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         {% load socialaccount %}
         <h2>Google Login</h2>
-        <a href="{% provider_login_url 'google' %}?next=/">LogIn with Google</a>
-        
+        <a href="{% provider_login_url 'google' %}?next=/post_login">LogIn with Google</a>
+
         {% if user.is_authenticated %}
-        <h2>You are signed in as {{user.email}}</h2>
-        <script>
-            function printTokens() {
-                const socialAccount = SocialAccount.objects.get(user=user)  # Get social account
-                const accessToken = socialAccount.extra_data.get('access_token')
-                const refreshToken = socialAccount.extra_data.get('refresh_token')
-    
-                if (accessToken && refreshToken) {
-                    console.log("Access Token:", accessToken);
-                    console.log("Refresh Token:", refreshToken);
-                } else {
-                    console.log("No tokens found in storage.");
-                }
-            }
-    
-            printTokens();
-        </script>
+        <h2>You are signed in as {{ user.email }}</h2>
         <a href="logout">Logout</a>
         {% endif %}
     </body>
