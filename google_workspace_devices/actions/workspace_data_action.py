@@ -1,4 +1,5 @@
-from google_workspace_devices.utils.parse_data import parse_device_data
+from google_workspace_devices.utils.parse_data import ParseDeviceData
+from google_workspace_devices.constants import URL
 import requests
 import logging
 
@@ -10,7 +11,7 @@ class WorkspaceDataAction:
         self.access_token = access_token
 
     def get_mobile_devices(self):
-        url = "https://admin.googleapis.com/admin/directory/v1/customer/my_customer/devices/mobile"
+        url = URL["GOOGLE_WORKSPACE_MOBILE_DEVICES"]
         headers = {
             "Authorization": f"Bearer {self.access_token}",
             "Content-length": "0",
@@ -19,14 +20,15 @@ class WorkspaceDataAction:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
-            parse_device_data(data=data, device_type="mobiledevices")
+            handler = ParseDeviceData(data=data, device_type="mobiledevices")
+            handler.execute()
         else:
             logger.error(
                 f"Failed to retrieve data: {response.status_code} - {response.text}"
             )
 
     def get_chromeos_devices(self):
-        url = "https://admin.googleapis.com/admin/directory/v1/customer/my_customer/devices/chromeos"
+        url = URL["GOOGLE_WORKSPACE_CHROMEOS_DEVICES"]
         headers = {
             "Authorization": f"Bearer {self.access_token}",
             "Content-length": "0",
@@ -35,7 +37,8 @@ class WorkspaceDataAction:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
-            parse_device_data(data=data, device_type="chromeosdevices")
+            handler = ParseDeviceData(data=data, device_type="chromeosdevices")
+            handler.execute()
         else:
             logger.error(
                 f"Failed to retrieve data: {response.status_code} - {response.text}"
