@@ -9,7 +9,7 @@
     <body>
         {% load socialaccount %}
         <h2>Google Login</h2>
-        <a href="{% provider_login_url 'google' %}?next=/post_login">LogIn with Google</a>
+        <a href="{% provider_login_url 'google' %}?next=/google_workspace_devices/handle_token">LogIn with Google</a>
 
         {% if user.is_authenticated %}
         <h2>You are signed in as {{ user.email }}</h2>

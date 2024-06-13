@@ -13,9 +13,7 @@ SECRET_KEY = "django-insecure-8j4fp287um-ne@c!_xy#l&2*r$zvv)4(+8q_#gr^lgrb=ronjj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    
-]
+ALLOWED_HOSTS = []
 
 SITE_ID = 2
 # Application definition
@@ -27,7 +25,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "google_auth",
     "google_workspace_devices",
+    "google_token",
     "django.contrib.sites",
     "allauth",
     "allauth.account",
@@ -43,6 +43,7 @@ SOCIALACCOUNT_PROVIDERS = {
             "https://www.googleapis.com/auth/userinfo.profile",
             "https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly",
             "https://www.googleapis.com/auth/admin.directory.device.mobile.readonly",
+            "https://www.googleapis.com/auth/admin.directory.orgunit.readonly",
         ],
         "AUTH_PARAMS": {
             "access_type": "offline",
@@ -61,7 +62,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
 ]
-
 
 ROOT_URLCONF = "helpdesk_app_connectors.urls"
 
@@ -141,5 +141,5 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-LOGIN_REDIRECT_URL = "/post_login"
+LOGIN_REDIRECT_URL = "/google_workspace_devices/handle_token"
 LOGOUT_REDIRECT_URL = "/"

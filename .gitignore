@@ -108,3 +108,5 @@ pyvenv.cfg
 .env
 
 **/node_modules
+cred.json
+credentials.json
