@@ -13,4 +13,4 @@ class ReceiveTokenView(View):
 class HandleTokenView(View):
     def get(self, request, *args, **kwargs):
         action = HandleTokenAction()
-        return action.handle(request)
+        return action.handle(request) 

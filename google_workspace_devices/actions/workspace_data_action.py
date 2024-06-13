@@ -12,7 +12,7 @@ class WorkspaceDataAction:
 
     def get_mobile_devices(self):
         url = URL["GOOGLE_WORKSPACE_MOBILE_DEVICES"]
-        headers = {
+        headers = { 
             "Authorization": f"Bearer {self.access_token}",
             "Content-length": "0",
         }
